@@ -4,7 +4,7 @@
 
 MNIST는 손글씨로 작성된 숫자 0에서 9가 적힌 이미지 6만장이 들어 있습니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/2.jpg)
+![MNIST](./image/2.jpg)
 
 그리고 이 데이터 셋의 이미지들은 각각 라벨(0~9)을 가지고 있는데 이게 우리에게 어떤 숫자인지를 알려주고 있습니다. 예를들면 위의 이미지는 5,0,4,1의 라벨을 가지는 이미지입니다.
 
@@ -31,7 +31,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 각각의 이미지는 28x28 픽셀로 구성되어있는데 이를 우리는 배열로 해석할수가 있습니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/3.jpg)
+![MNIST](./image/3.jpg)
 
 좌측의 이미지를 배열로 바라보면 우측과 같습니다. 우측의 각 컴퍼넌트는 0과 1사이의 값으로 명암의 정도를 숫자로 나타내고 있습니다.
 
@@ -42,7 +42,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 784차원의 공간속의 모든벡터가 MNIST 숫자는 아닙니다. 이 공간속에서 보통의 점들은 매우 다릅니다. 보통의 점들이 어떤 형태인지에 대한 개념을 가지기 위해서 우리는 몇몇 점들을 골라서 확인 할수있습니다. 28x28 이미지의 임의의 점의 픽셀은 검은색, 흰색 또는 그림자인 회색 중의 하나입니다.
 결국 그 임의의 점들은 마치 아래의 이미지 처럼 노이즈 같이 보입니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/4.jpg)
+![MNIST](./image/4.jpg)
 
 실제 MNIST숫자의 이미지는 매우 드문 형태의 이미지 입니다. MNIST의 데이터 점들은 784차원의 공간속에 모두 들어 가있지만 실제로 그 데이터는 매우 이부분의 공간속에서만 존재하고 있기 때문입니다. 즉 전체 공간속에 의미있는 데이터를 담고있는 점들은 매우 일부분이기 때문입니다.
 
@@ -51,14 +51,16 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 mnist.train.images의 결과로 우리는 tensor(n 차원 배열)을 [60000, 784] 형태로 얻게 됩니다. 첫번째 값은 60000 개의 트레이닝 이미지 데이터상에서 몇번째 이미지 인가를, 두번째 값의 경우에는 각 이미지의 픽셀의 인덱스정보를 담습니다. 특정 이미지의 특정 픽셀의 값은 0과 1사이의 숫자를통해 그 색의 강도를 나타냅니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/5.jpg)
+![MNIST](./image/5.jpg)
 
 그리고 이에 상응하는 MNIST에서의 라벨정보는 0에서 9사이의 숫자로 이뤄져있습니다. 그리고 이 라벨을 "one-hot vectors"의 형태로 사용하는 데 이는 0이 대부분의 차원을 그리고 1은 하나의 차원을 의미합니다. 여기에서 n번째 숫자는 n번째 차원에 1의 값을 가집니다.
 예를들면 0은 [1,0,0,0,0,0,0,0,0,0,0] 을 나타냅니다.
 mnist.train.labels는 [60000,10]의 형태를 가집니다.
 아래는 5,0,4,1을 나타낸 이미지 입니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/6.jpg)
+![MNIST](./image/6.jpg)
+
+
 
 와.. 뭐가 엄청 복잡해보이는데 그냥 이거 입니다. 각 이미지를 픽셀로 보니까 어라? 이거 28 by 28 배열같은데?? 일단 오케이!
 
@@ -107,7 +109,7 @@ Input에 6만장의 숫자 이미지를 입력합니다. 그리고 Feature1에�
 
 자그럼 다시 본론으로 돌아와 6만개의 MNIST이미지를 분석했더니 아래와 같은 결과를 가지 게 되었습니다.
 
-![MNIST](https://github.com/yuby/tensorflow-studyroom/tree/master/MNIST%20For%20ML%20Beginners/image/image/8.jpg)
+![MNIST](./image/8.jpg)
 
 여기서 빨간색과 파란색의 두가지 정보가 눈에 띕니다. 우선 0이라는 이미지를 죄다 분석을 해봤더니 각 픽셀의 짙기의 정도가 짙었던 부분은 양수값으로 그리고 색이 상대적으러 옅었던 부분은 음수값으로 가중치를 가지게 됩니다.
 그리고 이 가중치와 0 클래스(즉 0이라는 라벨값을 가진 이미지)의 각 픽셀을 곱합니다. 그리고 이 작업을 MNIST의 라벨이  0인 이미지의 갯수만큼 반복을 합니다. 즉, 0이라는 글자를 학습을 하는 것입니다. 그렇게 각 픽셀들의 합을 모두 더하면 각 픽셀의 음, 양수 값이 나오게 됩니다. 그래서 양수값이 나온부분은 파란색으로 음수값이 나온 부분은 빨간색으로 표현을 하면 위와 같은 이미지가 나오게 됩니다.
