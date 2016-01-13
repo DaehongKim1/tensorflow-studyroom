@@ -2,8 +2,8 @@
 
 일반적으로 프로그래밍을 처음 배울때 가장 먼저 해보는 것이 "Hello World" 를 출력하는 일입니다. 머신러닝을 처음 시작할때는 MNIST입니다.
 
-MNIST는 손글씨로 작성된 숫자 0에서 9가 적힌 이미지 6만장이 들어 있습니다.11111
-
+MNIST는 손글씨로 작성된 숫자 0에서 9가 적힌 이미지 6만장이 들어 있습니다.
+![as](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/10.JPG)
 ![MNIST](images/2.jpg)
 
 그리고 이 데이터 셋의 이미지들은 각각 라벨(0~9)을 가지고 있는데 이게 우리에게 어떤 숫자인지를 알려주고 있습니다. 예를들면 위의 이미지는 5,0,4,1의 라벨을 가지는 이미지입니다.
