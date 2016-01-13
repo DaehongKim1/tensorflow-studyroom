@@ -2,7 +2,7 @@
 
 일반적으로 프로그래밍을 처음 배울때 가장 먼저 해보는 것이 "Hello World" 를 출력하는 일입니다. 머신러닝을 처음 시작할때는 MNIST입니다.
 
-MNIST는 손글씨로 작성된 숫자 0에서 9가 적힌 이미지 6만장이 들어 있습니다.<br/>
+MNIST는 손글씨로 작성된 숫자 0에서 9가 적힌 이미지 6만장이 들어 있습니다.
 
 ![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/2.JPG)
 
@@ -42,7 +42,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 784차원의 공간속의 모든벡터가 MNIST 숫자는 아닙니다. 이 공간속에서 보통의 점들은 매우 다릅니다. 보통의 점들이 어떤 형태인지에 대한 개념을 가지기 위해서 우리는 몇몇 점들을 골라서 확인 할수있습니다. 28x28 이미지의 임의의 점의 픽셀은 검은색, 흰색 또는 그림자인 회색 중의 하나입니다.
 결국 그 임의의 점들은 마치 아래의 이미지 처럼 노이즈 같이 보입니다.
 
-![MNIST](./image/4.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/4.JPG)
 
 실제 MNIST숫자의 이미지는 매우 드문 형태의 이미지 입니다. MNIST의 데이터 점들은 784차원의 공간속에 모두 들어 가있지만 실제로 그 데이터는 매우 이부분의 공간속에서만 존재하고 있기 때문입니다. 즉 전체 공간속에 의미있는 데이터를 담고있는 점들은 매우 일부분이기 때문입니다.
 
@@ -51,14 +51,14 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 mnist.train.images의 결과로 우리는 tensor(n 차원 배열)을 [60000, 784] 형태로 얻게 됩니다. 첫번째 값은 60000 개의 트레이닝 이미지 데이터상에서 몇번째 이미지 인가를, 두번째 값의 경우에는 각 이미지의 픽셀의 인덱스정보를 담습니다. 특정 이미지의 특정 픽셀의 값은 0과 1사이의 숫자를통해 그 색의 강도를 나타냅니다.
 
-![MNIST](./image/5.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/5.JPG)
 
 그리고 이에 상응하는 MNIST에서의 라벨정보는 0에서 9사이의 숫자로 이뤄져있습니다. 그리고 이 라벨을 "one-hot vectors"의 형태로 사용하는 데 이는 0이 대부분의 차원을 그리고 1은 하나의 차원을 의미합니다. 여기에서 n번째 숫자는 n번째 차원에 1의 값을 가집니다.
 예를들면 0은 [1,0,0,0,0,0,0,0,0,0,0] 을 나타냅니다.
 mnist.train.labels는 [60000,10]의 형태를 가집니다.
 아래는 5,0,4,1을 나타낸 이미지 입니다.
 
-![MNIST](./image/6.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/6.JPG)
 
 
 
@@ -109,32 +109,32 @@ Input에 6만장의 숫자 이미지를 입력합니다. 그리고 Feature1에�
 
 자그럼 다시 본론으로 돌아와 6만개의 MNIST이미지를 분석했더니 아래와 같은 결과를 가지 게 되었습니다.
 
-![MNIST](./image/8.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/8.JPG)
 
 여기서 빨간색과 파란색의 두가지 정보가 눈에 띕니다. 우선 0이라는 이미지를 죄다 분석을 해봤더니 각 픽셀의 짙기의 정도가 짙었던 부분은 양수값으로 그리고 색이 상대적으러 옅었던 부분은 음수값으로 가중치를 가지게 됩니다.
 그리고 이 가중치와 0 클래스(즉 0이라는 라벨값을 가진 이미지)의 각 픽셀을 곱합니다. 그리고 이 작업을 MNIST의 라벨이  0인 이미지의 갯수만큼 반복을 합니다. 즉, 0이라는 글자를 학습을 하는 것입니다. 그렇게 각 픽셀들의 합을 모두 더하면 각 픽셀의 음, 양수 값이 나오게 됩니다. 그래서 양수값이 나온부분은 파란색으로 음수값이 나온 부분은 빨간색으로 표현을 하면 위와 같은 이미지가 나오게 됩니다.
 
 이제 이러한 과정을 식으로 나타내면 아래와 같습니다.
 
-![MNIST](./image/9.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/9.JPG)
 
 클래스에 해당하는 모든 이미지의 픽셀의 값과 가중치를 곱한 총합과 bias를 더해 evidence를 구합니다. i는 클래스를 j는 픽셀의 인덱스를 나타냅니다. 그리고 그렇게 구해진 evidence를 softmax 함수의 인자로 전달을 하면 확률값 y가 나오게 됩니다.
 
-![MNIST](./image/10.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/10.JPG)
 
 
 
 우리는 softmax regression을 도식화하는 것이 가능합니다. 비록 더많은 입력이 표현되야 하지만 아래와 같이 표현가능합니다.
 
-![MNIST](./image/13.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/13.JPG)
 
 각각의 결과는 입력에 대한 가중치를 곱한 총 합에 bias를 더한값을 softmax에 적용하고 있습니다. 위의 그림을 식으로 나타내면 다음과 같습니다.
 
-![MNIST](./image/14.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/14.JPG)
 
 이를 벡터화 시켜서 배열의 곱과 벡터의 합으로 나타낼수있습니다. 이러한 방식으로 생각하는것이 계산을 하는데 훨씬 직관적입니다.
 
-![MNIST](./image/15.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/15.JPG)
 
 조금더 극단적으로 단순화 시키면 다음과 같습니다.
 
@@ -197,7 +197,7 @@ TensorFlow가 softmax regression을 특별히 쉽게 구현하기 위해서 이�
 
 가장 일반적이고 가장 좋은 비용함수를 우리는 "cross entropy" 라고 부릅니다. 놀랍게도 cross entropy 는 정보의 압축코드에서 나온 아이디어 입니다. 하지만 지금은 머신러닝은 물론 겜블링등 에서도 사용이 될만큼 다양한 분야에서 사용이 되고 있습니다. 이 함수는 아래와 같이 정의가 됩니다.
 
-![MNIST](./image/17.jpg)
+![MNIST](https://github.com/yuby/tensorflow-studyroom/blob/master/MNIST%20For%20ML%20Beginners/images/17.JPG)
 
 여기서 y는 우리의 예상 확률분포를 의미하고 y`의 경우에는 실제 확률분포를 의미합니다. 대략적으로  cross entropy는 얼마나 우리의 예측이 효과적으로 사실을 어떻게 측정하는지에 대한 개념입니다.  cross entropy에 대한 더 많은 정보는 이 튜토리얼의 범위를 넘어서기 때문에 자세한 내용을 이곳에서 확인 하시면 됩니다.
 
@@ -275,9 +275,6 @@ print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 
 이제 초보자 수준으로 MNIST를 분석하는 방법을 배웠으니 다음은 전문가 수준으로 한번 해보겠습니다. 일단 위의 내용을 제대로 이해하셔서 다음 챕터에서 MNIST의 전문가가 될 준비를 해주세요!!
 
-
-
-http://www.tensorflow.org/tutorials/mnist/beginners/index.md
 
 
 
